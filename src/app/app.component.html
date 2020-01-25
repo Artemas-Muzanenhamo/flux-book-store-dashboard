@@ -1,18 +1,22 @@
 <header>
   <h1 class="uk-heading-line uk-text-center"><span>Flux Book Store Dashboard</span></h1>
 </header>
-<div class="mat-dialog-container">
-  <mat-grid-list cols="2" rowHeight="2:2">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>
-      <mat-form-field class="example-container">
-        <input matInput placeholder="Author Name">
-      </mat-form-field>
-
-      <mat-form-field class="example-container">
-        <input matInput placeholder="Author Surname">
-      </mat-form-field>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div>
+  <table class="uk-table uk-table-divider uk-table-hover uk-table-middle">
+    <thead class="">
+      <tr>
+        <th>Author Name</th>
+        <th>Author Surname</th>
+        <th>Book Title</th>
+      </tr>
+    </thead>
+    <tbody class="">
+      <tr *ngFor="let book of books">
+        <td>{{book.author.firstName}}</td>
+        <td>{{book.author.surname}}</td>
+        <td>{{book.title}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <footer class="uk-text-center">Flux Book Store Dashboard</footer>
