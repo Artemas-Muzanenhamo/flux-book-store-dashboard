@@ -1,23 +1,21 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Book} from './book';
-import {Author} from './author';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class BookStoreService {
 
-  private http: HttpClient;
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(httpClient: HttpClient) {
-    this.http = httpClient;
-  }
+  private url = 'http://localhost:8080/books';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
-  author = new Author('artemas', 'muzanenhamo');
-  book = new Book(this.author, 'some title');
-
-  books = [this.book, this.book, this.book];
-
-  public getBooks(): Book[] {
-    return this.books;
+  public getBooks(): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.url, this.httpOptions);
   }
 }
