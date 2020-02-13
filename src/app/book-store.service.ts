@@ -8,21 +8,14 @@ export class BookStoreService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'http://localhost:8080/books/reactive';
+  private url = 'http://localhost:8080/books';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Accept':  'text/event-stream'
+      'Content-Type':  'application/json'
     })
   };
 
   public getBooks(): Observable<Book[]> {
-    const response = this.httpClient.get<Book[]>(this.url, this.httpOptions);
-    response.subscribe(
-      res => {
-        console.log(res);
-      }
-    );
-    return response;
+    return this.httpClient.get<Book[]>(this.url, this.httpOptions);
   }
 }

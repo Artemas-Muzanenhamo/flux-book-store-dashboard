@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bookReactiveService.getBooksStream()
+    this.bookService.getBooks()
       .subscribe(bookData => {
         console.log(bookData);
         this.books = bookData;
