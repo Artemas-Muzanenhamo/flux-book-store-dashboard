@@ -7,7 +7,7 @@ import {Author} from './author';
 export class BookReactiveService {
 
   books: Book[] = [];
-  url = 'http://localhost:8080/books';
+  url = 'http://localhost:8080/books/reactive';
 
   getBooksStream(): Observable<Array<Book>> {
     this.books = [];
