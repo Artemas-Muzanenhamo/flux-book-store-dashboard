@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BookStoreService} from './book-store.service';
 import {Book} from './book';
+import {SseService} from './sse.service';
+import {Author} from './author';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,13 @@ import {Book} from './book';
 })
 export class AppComponent implements OnInit {
   title = 'flux-book-store-dashboard';
-  books: Book[];
+  book: Book;
+  booksSet: Set<Book> = new Set<Book>();
 
-  constructor(private bookService: BookStoreService) {
+  constructor(
+    private bookService: BookStoreService,
+    private sseService: SseService
+  ) {
     this.bookService = bookService;
   }
 
@@ -19,15 +25,16 @@ export class AppComponent implements OnInit {
     return this.bookService.getBooks()
       .subscribe(bookData => {
         console.log(bookData);
-        this.books = bookData;
       });
   }
 
   ngOnInit(): void {
-    this.bookService.getBooks()
-      .subscribe(bookData => {
-        console.log(bookData);
-        this.books = bookData;
+    this.sseService
+      .getServerSentEvent('http://localhost:8080/books/reactive')
+      .subscribe(data => {
+        console.log(data);
+        this.book = JSON.parse(data.data);
+        this.booksSet.add(this.book);
       });
   }
 }

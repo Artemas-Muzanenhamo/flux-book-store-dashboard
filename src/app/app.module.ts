@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule, MatGridListModule, MatInputModule, MatListModule} from '@angular/material';
 import {BookStoreService} from './book-store.service';
 import {HttpClientModule} from '@angular/common/http';
+import {SseService} from './sse.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatListModule
   ],
   providers: [
-    BookStoreService
+    BookStoreService,
+    SseService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
