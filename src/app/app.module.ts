@@ -3,7 +3,10 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatGridListModule, MatInputModule, MatListModule} from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import {BookStoreService} from './book-store.service';
 import {HttpClientModule} from '@angular/common/http';
 import {SseService} from './sse.service';
